@@ -6,10 +6,15 @@ import {
   View,
   Dimensions,
 } from "react-native";
-import WelcomeScreen from "./app/screens/WelcomeScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import StackNavigator from "./StackNavigator";
 
 export default function App() {
-  return <WelcomeScreen />;
+  return (
+    <NavigationContainer>
+      <StackNavigator />
+    </NavigationContainer>
+  );
 }
 
 // npx cross-env NODE_OPTIONS=--openssl-legacy-provider expo start --web

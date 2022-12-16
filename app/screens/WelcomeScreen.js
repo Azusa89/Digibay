@@ -1,7 +1,19 @@
 import React from "react";
-import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import {
+  Image,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from "react-native";
 
-function WelcomeScreen(props) {
+import colors from "../config/colors";
+
+function WelcomeScreen() {
+  const navigation = useNavigation();
+
   return (
     <ImageBackground
       style={styles.background}
@@ -9,14 +21,29 @@ function WelcomeScreen(props) {
     >
       <View style={styles.logoContainer}>
         <Image style={styles.logo} source={require("../assets/DigiBay2.png")} />
-        <Text>Trading Digital Art Aseets</Text>
+        <Text style={styles.welcomeText}>Trading Digital Art Aseets</Text>
       </View>
-      <View style={styles.loginButton}></View>
-      <View style={styles.registerButton}></View>
+      <TouchableOpacity
+        style={styles.loginButton}
+        onPressOut={() => navigation.navigate("ViewImageScreen")}
+      >
+        <Text style={styles.welcomeText}>Login</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.registerButton}
+        onPressOut={() => navigation.navigate("ViewImageScreen")}
+      >
+        <Text style={styles.welcomeText}>Register</Text>
+      </TouchableOpacity>
     </ImageBackground>
   );
 }
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
   logo: {
     width: 100,
     height: 100,
@@ -28,20 +55,23 @@ const styles = StyleSheet.create({
     top: 70,
     alignItems: "center",
   },
-  background: {
-    flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "center",
-  },
   loginButton: {
     width: "100%",
     height: 70,
-    backgroundColor: "#fc5c65",
+    backgroundColor: colors.primary,
+    alignItems: "center",
+    justifyContent: "center",
   },
   registerButton: {
     width: "100%",
     height: 70,
-    backgroundColor: "#4ecdc4",
+    backgroundColor: colors.seondary,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  welcomeText: {
+    color: colors.white,
+    fontSize: 20,
   },
 });
 export default WelcomeScreen;
